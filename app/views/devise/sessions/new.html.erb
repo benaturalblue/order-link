@@ -1,0 +1,39 @@
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      ログイン
+    </h1>
+  </div>
+
+<%= form_with model: @user, class: 'registration-main', url: user_session_path, local: true do |f| %>
+  
+  <div class='login-flash-message'>
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+  </div>
+  
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">メールアドレス</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", autofocus: true %>
+  </div>
+  
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">パスワード</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"" %>
+  </div>
+  
+  <div class='login-btn'>
+    <%= f.submit "ログイン" ,class:"register-red-btn" %>
+  </div>
+  
+<% end %>
+
+<div class="form-group">
+<%= link_to "＜新規登録はこちら＞", new_user_registration_path, class:"sub-login-btn" %>
+</div>
