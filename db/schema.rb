@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2023_05_27_021336) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "sending_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_sending_users_on_order_id"
+    t.index ["user_id"], name: "index_sending_users_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -42,4 +51,5 @@ ActiveRecord::Schema.define(version: 2023_05_27_021336) do
   end
 
   add_foreign_key "orders", "users"
+
 end
