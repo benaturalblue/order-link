@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_27_023223) do
+ActiveRecord::Schema.define(version: 2023_05_27_021336) do
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_name", null: false
@@ -51,6 +51,5 @@ ActiveRecord::Schema.define(version: 2023_05_27_023223) do
   end
 
   add_foreign_key "orders", "users"
-  add_foreign_key "sending_users", "orders"
-  add_foreign_key "sending_users", "users"
+
 end
