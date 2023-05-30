@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリケーション名
+______
+Order-Link
 
-Things you may want to cover:
+## アプリケーション概要
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+発注書を作成し、特定のユーザーに送信し連絡を取ることができる。
