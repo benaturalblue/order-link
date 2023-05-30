@@ -1,8 +1,1 @@
-<%= form_with model: @order do |form| %>
-  <!-- その他のフォームフィールド -->
-  
-  <%= form.label :sending_user_id, "送信先ユーザー" %>
-  <%= form.collection_select :sending_user_id, User.all, :id, :name, {}, multiple: true %>
-  
-  <%= form.submit "Create Order" %>
-<% end %>
+新規作成画面
