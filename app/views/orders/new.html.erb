@@ -1,1 +1,62 @@
-新規作成画面
+<div class="items-sell-contents">
+  <div class="items-sell-main">
+    <%= link_to image_tag('DF2C122C-D754-4D23-916F-539CB5B324BF.jpg', size: '185x50'), "/" %>
+    <h2 class="items-sell-title">品名登録</h2>
+
+    <%= form_with(model: @sending_user, url: sending_user_index_path, local: true) do |f| %>
+      <%= f.select :company_name, options_for_select(@users.map { |user| [user.company_name, user.id] if user != current_user }), prompt: "事業者名を選択" %>
+    <% end %>
+
+    <div id="order-form-wrapper">
+      <%= form_with(model: @order, url: orders_path, local: true) do |f| %>
+        <%= render 'shared/error_messages', model: @order %>
+
+        <div class="order_form">
+          <div class="order-text">
+            品名
+          </div>
+          <%= f.text_field :item_name, class:"items-text", id:"item-name", maxlength:"40" %>
+
+          <div class="order-text">
+            数量
+          </div>
+          <%= f.text_field :amount, class:"items-text", id:"item-price", placeholder:"例）300" %><span class="gram">g</span>
+
+          <div class="order-text">
+            備考欄
+          </div>
+          <%= f.text_field :memo, class:"items-text", id:"item-info",rows:"7" ,maxlength:"1000" %>
+        </div>
+
+        <button type="button" id="add-form-button">追加</button>
+
+        <div class="order-text">
+          納品日
+        </div>
+        <%= f.date_field :delivery_day, class:"calender" %>
+
+        <div class="submit_button">
+          <%= f.submit "送信する" ,class:"submit-btn" %>
+          <%=link_to 'もどる', root_path, class:"back-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const addFormButton = document.getElementById("add-form-button");
+  const orderFormWrapper = document.getElementById("order-form-wrapper");
+  const orderFormFields = orderFormWrapper.querySelector(".order_form").querySelectorAll(".items-text");
+
+  addFormButton.addEventListener("click", function() {
+    const clone = orderFormWrapper.querySelector(".order_form").cloneNode(true);
+    const newFormId = "order-form-" + Date.now();
+    clone.id = newFormId;
+
+    const originalForm = orderFormWrapper.querySelector(".order_form");
+    originalForm.parentNode.insertBefore(clone, originalForm.nextSibling);
+  });
+});
+</script>
