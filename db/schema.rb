@@ -10,26 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_27_021336) do
+ActiveRecord::Schema.define(version: 2023_06_01_030317) do
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_name", null: false
     t.integer "amount", null: false
-    t.date "delivery_day", null: false
-    t.string "memo"
-    t.bigint "user_id", null: false
+    t.string "memo", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
-  create_table "sending_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "order_id", null: false
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "delivery_day", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_sending_users_on_order_id"
-    t.index ["user_id"], name: "index_sending_users_on_user_id"
+    t.integer "sending_user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,6 +49,6 @@ ActiveRecord::Schema.define(version: 2023_05_27_021336) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
-
 end
