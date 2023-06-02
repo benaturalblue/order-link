@@ -1,0 +1,22 @@
+.new-items {
+  display: flex;
+}
+
+.new-items .nested-fields {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.new-items .nested-fields:last-child {
+  margin-right: 0;
+}
+.items-sell-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 必要に応じて調整してください */
+}
+
+.items-sell-main {
+  text-align: center;
+}

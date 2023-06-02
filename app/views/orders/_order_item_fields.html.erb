@@ -1,0 +1,58 @@
+<style>
+  .new-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .new-items .field {
+    flex-basis: calc(33.33% - 30px); /* 調整された値 */
+    margin-right: 30px; /* 調整された値 */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .new-items .field:last-child {
+    margin-right: 0;
+  }
+
+  .field .remove-field {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .field .weight-bold-text,
+  .field .remove-field {
+    writing-mode: horizontal-tb;
+    text-orientation: upright;
+  }
+  .delete-button {
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+  }
+</style>
+
+<div class="nested-fields">
+  <div class="new-items">
+    <div class="field">
+      <%= f.text_field :item_name, class: "items-text", id: "item-name" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :amount, class: "items-text", id: "item-info" %>
+      <div class="weight-bold-text">
+        g
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :memo, class: "memo", id: "item-info" %>
+      <div class="remove-field">
+        <%= link_to_remove_association '削除', f, class: "delete-button" %>
+      </div>
+    </div>
+  </div>
+</div>

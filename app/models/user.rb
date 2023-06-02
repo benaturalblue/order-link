@@ -12,4 +12,5 @@ class User < ApplicationRecord
   validates :phone_number,    presence: true, length: { minimum: 10, maximum: 11 }, numericality: { only_integer: true }
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
   
+  has_many :orders
 end
