@@ -11,7 +11,10 @@ https://order-link.onrender.com
 
 ## テスト用アカウント
 ・メールアドレス
+test@test.com
+
 ・パスワード
+123abc
 
 ## 利用方法
 ### 新規作成
@@ -38,6 +41,10 @@ https://order-link.onrender.com
 ## 実装予定の機能
 
 ## データベース設計
+![ER](https://github.com/benaturalblue/order-link/assets/130998935/32329518-0e9b-49b6-a8da-61ce45aaafe8)
+
+## 画面遷移図
+![無題のプレゼンテーション](https://github.com/benaturalblue/order-link/assets/130998935/a3b28c34-8b00-4821-93cd-0eb0c596006e)
 
 ## 開発環境
 ・フロントエンド(HTML,CSS)
