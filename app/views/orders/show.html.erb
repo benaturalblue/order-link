@@ -1,0 +1,80 @@
+<style>
+.order-edit {
+  text-decoration: none;
+}
+.order-destroy {
+  text-decoration: none;
+}
+.contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.order-item-index {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 30px;
+}
+.title-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0px;
+}
+.edit-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.order_item_name {
+  padding-right: 20px;
+}
+.index-delivery {
+  margin: 30px;
+  font-size: 30px;
+}
+.order-edit {
+  text-align: center;
+  background-color: #87CEEB;
+  font-size: 24px;
+  color: black;
+  margin: 10px 0px;
+  padding: 2vh 10vw;
+}
+.order-destroy {
+  text-align: center;
+  background-color: #87CEEB;
+  font-size: 24px;
+  color: black;
+  margin: 20px 0px;
+  padding: 2vh 10vw;
+}
+.order_item_amount {
+  padding-right: 20px;
+}
+</style>
+
+<div class="title-index">
+  <h2>Order Items</h2>
+</div>
+<div class="contents">
+  <div class="index-delivery">
+    <span>納品日：</span>
+    <%= @order.delivery_day %>
+  </div>
+  
+  <% @order.order_items.each do |order_item| %>
+    <div class="order-item-index">
+      <p class="order_item_name"><%= order_item.item_name %></p>
+      <p class="order_item_amount"><%= order_item.amount %>g</p>
+      <p class="order_item_memo"><%= order_item.memo %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="edit-delete">
+  <%= link_to '編集', edit_order_path(@order.id), class: "order-edit" %>
+  <%= link_to '削除', order_path(@order.id), method: :delete, class: "order-destroy" %>
+</div>
