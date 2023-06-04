@@ -77,6 +77,15 @@
     <h2 class="items-sell-title" style="margin-top: 50px;">品名登録</h2>
 
     <%= form_with(model: @order, url: orders_path, local: true) do |f| %>
+    
+    <%= render 'shared/error_messages', model: @order %>
+
+      <div class="field">
+        <%= f.label :sending_user_id, class: "weight-bold-text" do %>
+          送信先
+        <% end %>
+        <%= f.collection_select :sending_user_id, User.where.not(id: current_user.id), :id, :company_name, { include_blank: true }, class: "select-field" %>
+      </div>
       
       <div class="fields">
         <div class="field">
