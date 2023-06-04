@@ -11,14 +11,4 @@ environment.plugins.prepend('Provide',
 
 module.exports = environment
 
-const webpack = require('webpack');
-
-environment.plugins.prepend('Provide',
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    jquery: 'jquery',
-  })
-);
-
 environment.mode = 'development';
