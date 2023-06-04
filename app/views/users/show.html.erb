@@ -1,58 +1,20 @@
-<%# CSS・・・assets/stylesheets/shared/header.css %>
-    
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      .container {
-        margin-top: 0;
-      }
-
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 20px;
-      }
+      
       .furima-icon {
-        width: 230px;
-        height: 70px;
+        width: 260px;
+        height: 80px;
         margin-left: 15px;
       }
-      ul.nav {
-        justify-content: flex-end;
+      .contents-row {
+      }
+      .order-index {
+        display: block;
+        text-decoration: none;
+        align-items: center;
       }
     </style>
 
     
-    <!-- Custom styles for this template -->
-    <link href="headers.css" rel="stylesheet">
-  </head>
-  <body>
-
-<main>
-  <h1 class="visually-hidden">Headers examples</h1>
-    
-
   <div class="container">
     <header class="d-flex flex-wrap py-3 mb-4 border-bottom">
       <%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"furima-icon"), root_path %>
@@ -61,12 +23,20 @@
       <%= link_to "発注作成", new_order_path, class: "nav-link active", style: "background-color: #87CEEB; color: black;", "aria-current": "page"  %>
     </li>
     <li class="nav-item">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link active", style: "background-color: #87CEEB; color: black;", "aria-current": "page" %>
+      <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link active", style: "background-color: #87CEEB; color: black;", "aria-current": "page" %>
     </li>
-    
   </ul>
-      
     </header>
   </div>
+  
+<p>こんにちは、<%= current_user.company_name %>さん</p>
+
+
+<div class="contents-row">
+<p>送信済み発注</p>
+  <% @orders.each do |order| %>
+      <%= link_to order.delivery_day, order_path(order), class: "order-index" %>
+  <% end %>
+</div>
 
 
