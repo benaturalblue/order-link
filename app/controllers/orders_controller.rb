@@ -51,6 +51,8 @@ class OrdersController < ApplicationController
   
   def show
     @order = Order.includes(:order_items).find(params[:id])
+    @comment = Comment.new
+    @comments = @order.comments.includes(:user)
   end
     
 

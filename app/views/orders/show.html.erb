@@ -54,8 +54,14 @@
 .order_item_amount {
   padding-right: 20px;
 }
+.logo-image {
+        width: 260px;
+        height: 80px;
+        margin-left: 15px;
+      }
 </style>
 
+<%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"logo-image"), root_path %>
 <div class="title-index">
   <h2>Order Items</h2>
 </div>
@@ -78,3 +84,23 @@
   <%= link_to '編集', edit_order_path(@order.id), class: "order-edit" %>
   <%= link_to '削除', order_path(@order.id), method: :delete, class: "order-destroy" %>
 </div>
+
+<div class="container">
+  <% if user_signed_in? %>
+    <%= form_with(model: [@order, @comment] , url: order_comments_path(@order), local: true) do |form| %>
+  <%= form.text_area :content, placeholder: "コメントする", rows: "2" %>
+  <%= form.submit "SEND" %>
+<% end %>
+  <% end %>
+  <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= comment.user.company_name %>：</strong>
+          <%= comment.content %>
+        </p>
+      <% end %>
+    </div>
+</div>
+
+
