@@ -11,7 +11,7 @@ https://order-link.onrender.com
 
 ## テスト用アカウント
 ・メールアドレス
-test@test.com
+himawari@himawari.com
 
 ・パスワード
 123abc
@@ -36,9 +36,9 @@ test@test.com
 ## 洗い出した要件
 [要件を定義したシート](https://docs.google.com/spreadsheets/d/1WvnPBzfSjBlhUhAY3-TWs0iAeYly6wd59wJF8F2DH_4/edit?usp=sharing)
 
-## 実装した機能についての画像やGIFおよびその説明
-
 ## 実装予定の機能
+
+・自分宛に発注が送られた時、コメントが投稿された時の通知機能
 
 ## データベース設計
 ![ER](https://github.com/benaturalblue/order-link/assets/130998935/32329518-0e9b-49b6-a8da-61ce45aaafe8)
@@ -53,7 +53,7 @@ test@test.com
 
 ・インフラ(Render)
 
-・テスト
+・テスト(RSpec)
 
 ・テキストエディタ(Visual Studio Code)
 
