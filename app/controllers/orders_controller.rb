@@ -39,11 +39,13 @@ class OrdersController < ApplicationController
   
   
   def destroy
+    @order = Order.find(params[:id])
     if current_user == @order.user
+      @order.order_items.destroy_all
       @order.destroy
       redirect_to root_path
     else
-      redirect_to root_path
+      redirect_to order_path
     end
   end
   

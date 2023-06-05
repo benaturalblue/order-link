@@ -33,9 +33,16 @@
 
 
 <div class="contents-row">
-<p>送信済み発注</p>
+  <p>送信済み発注</p>
   <% @orders.each do |order| %>
-      <%= link_to order.delivery_day, order_path(order), class: "order-index" %>
+    <div class="order-index">
+      <%= link_to order.delivery_day, order_path(order) %>
+      <% if order.sending_user.present? %>
+      <%= link_to order.sending_user.company_name, order_path(order) %>
+      <% else %>
+        ユーザーが存在しません
+      <% end %>
+    </div>
   <% end %>
 </div>
 
