@@ -39,11 +39,20 @@
       <%= link_to order.delivery_day, order_path(order) %>
       <% if order.sending_user.present? %>
       <%= link_to order.sending_user.company_name, order_path(order) %>
-      <% else %>
-        ユーザーが存在しません
       <% end %>
     </div>
   <% end %>
 </div>
 
 
+<div class="contents-row">
+  <p>受注一覧</p>
+  <% @matched_orders.each do |order| %>
+    <% if order.sending_user_id == current_user.id %>
+      <div class="order-index">
+        <%= link_to order.delivery_day, order_path(order) %>
+        <%= link_to order.user.company_name, order_path(order) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

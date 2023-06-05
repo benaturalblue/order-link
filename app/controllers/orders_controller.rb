@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.all
+    @matched_orders = @orders.select { |order| order.sending_user_id == current_user.id || order.user_id == current_user.id }
   end
   
   def new
