@@ -9,10 +9,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px 0;
 }
 .order-item-index {
   display: flex;
-  align-items: center;
+  justify-content: center;
   margin: 10px 0;
   font-size: 30px;
 }
@@ -20,24 +21,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 0px;
+  margin-bottom: 30px;
+}
+h2 {
+  font-weight: bold;
 }
 .edit-delete {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  justify-content: center;
+  margin: 20px;
 }
 .order_item_name {
-  padding-right: 20px;
+  text-align: left;
+  margin-right: 20px;
+  width: 200px;
+  margin-left: 250px;
+}
+.order_item_amount {
+  text-align: left;
+  margin-right: 40px;
+  width: 100px;
+}
+.order_item_memo {
+  text-align: left; 
+  width: 400px;
 }
 .index-delivery {
-  margin: 30px;
+  margin-bottom: 60px;
   font-size: 30px;
+  text-align: center;
+  position: relative;
 }
+
+.delivery-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #ccc;
+}
+
 .order-edit {
   text-align: center;
-  background-color: #87CEEB;
+  background-color: #94bcb7;
   font-size: 24px;
   color: black;
   margin: 10px 0px;
@@ -45,35 +73,52 @@
 }
 .order-destroy {
   text-align: center;
-  background-color: #87CEEB;
+  background-color: #94bcb7;
   font-size: 24px;
   color: black;
-  margin: 20px 0px;
+  margin: 20px 10px;
   padding: 2vh 10vw;
 }
-.order_item_amount {
-  padding-right: 20px;
-}
 .logo-image {
-        width: 260px;
-        height: 80px;
-        margin-left: 15px;
-      }
+  width: 260px;
+  height: 80px;
+  margin: 30px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comments {
+  margin: 50px;
+}
+.comment-form {
+  width: 500px;
+  height: 60px;
+  margin: 40px;
+}
+.submit-btn {
+  width: 70px;
+  height: 50px;
+  background-color: #94bcb7;
+  border: none;
+}
 </style>
 
 <%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"logo-image"), root_path %>
 <div class="title-index">
-  <h2>Order Items</h2>
+  <h2>発注内容</h2>
 </div>
 <div class="contents">
   <div class="index-delivery">
     <span>納品日：</span>
     <%= @order.delivery_day %>
+    <div class="delivery-line"></div>
   </div>
   
   <% @order.order_items.each do |order_item| %>
     <div class="order-item-index">
-      <p class="order_item_name"><%= order_item.item_name %></p>
+      <p class="order_item_name">◇<%= order_item.item_name %></p>
       <p class="order_item_amount"><%= order_item.amount %>g</p>
       <p class="order_item_memo"><%= order_item.memo %></p>
     </div>
@@ -81,26 +126,24 @@
 </div>
 
 <div class="edit-delete">
-  <%= link_to '編集', edit_order_path(@order.id), class: "order-edit" %>
-  <%= link_to '削除', order_path(@order.id), method: :delete, class: "order-destroy" %>
+  <%= link_to '編 集', edit_order_path(@order.id), class: "order-edit" %>
+  <%= link_to '削 除', order_path(@order.id), method: :delete, class: "order-destroy" %>
 </div>
 
 <div class="container">
   <% if user_signed_in? %>
     <%= form_with(model: [@order, @comment] , url: order_comments_path(@order), local: true) do |form| %>
-  <%= form.text_area :content, placeholder: "コメントする", rows: "2" %>
-  <%= form.submit "SEND" %>
-<% end %>
+      <%= form.text_area :content, placeholder: "コメントする", rows: "2", class: "comment-form" %>
+      <%= form.submit "送信", class: "submit-btn" %>
+    <% end %>
   <% end %>
   <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
-        <p>
-          <strong><%= comment.user.company_name %>：</strong>
-          <%= comment.content %>
-        </p>
-      <% end %>
-    </div>
+    <h4>＜コメント一覧＞</h4>
+    <% @comments.each do |comment| %>
+      <p>
+        <strong><%= comment.user.company_name %>：</strong>
+        <%= comment.content %>
+      </p>
+    <% end %>
+  </div>
 </div>
-
-
