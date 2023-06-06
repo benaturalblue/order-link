@@ -23,6 +23,7 @@
       .show-page {
         text-decoration: none;
         color: black;
+        font-size: 20px;
       }
       .create-order {
         text-decoration: none;
@@ -75,11 +76,11 @@
 
 <div class="contents-row">
   <p>送信一覧</p>
-  <% @orders.each do |order| %>
+  <% @orders.reverse_each do |order| %>
     <div class="order-index">
       ◇ <%= link_to order.delivery_day, order_path(order), class: "show-page" %>
       <% if order.sending_user.present? %>
-      <%= link_to order.sending_user.company_name, order_path(order), class: "show-page" %>
+        　<%= link_to order.sending_user.company_name, order_path(order), class: "show-page" %>
       <% end %>
     </div>
   <% end %>
@@ -88,7 +89,7 @@
 
 <div class="contents-row">
   <p>受注一覧</p>
-  <% @matched_orders.each do |order| %>
+  <% @matched_orders.reverse_each do |order| %>
     <% if order.sending_user_id == current_user.id %>
       <div class="order-index">
         ◇ <%= link_to order.delivery_day, order_path(order), class: "show-page" %>
@@ -97,3 +98,6 @@
     <% end %>
   <% end %>
 </div>
+
+
+
