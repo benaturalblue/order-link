@@ -3,15 +3,54 @@
       .furima-icon {
         width: 260px;
         height: 80px;
-        margin-left: 15px;
+        margin-left: 5px;
+      }
+      .infomation {
+        font-size: 20px;
+        margin: 30px 0 50px 100px;
+      }
+      .nav-item {
+        padding: 10px;
+        font-size: 20px;
       }
       .contents-row {
+        margin: 50px 0 50px 100px;
+        font-size: 20px;
+        padding: 10px;
       }
-      .order-index {
-        display: block;
+      .show-page {
         text-decoration: none;
-        align-items: center;
+        color: black;
       }
+      .create-order {
+        text-decoration: none;
+        padding: 15px;
+        background-color: #94bcb7;
+        color: black;
+        margin-left: 650px;
+      }
+      .logout-button {
+        text-decoration: none;
+        padding: 15px;
+        background-color: #94bcb7;
+        color: black;
+      }
+      .container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .nav-item {
+    margin-left: 10px;
+  }
+      
     </style>
 
     
@@ -20,25 +59,26 @@
       <%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"furima-icon"), root_path %>
   <ul class="nav nav-pills justify-content-center">
     <li class="nav-item">
-      <%= link_to "発注作成", new_order_path, class: "nav-link active", style: "background-color: #87CEEB; color: black;", "aria-current": "page"  %>
+      <%= link_to "発注作成", new_order_path, class: "create-order", "aria-current": "page"  %>
     </li>
     <li class="nav-item">
-      <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link active", style: "background-color: #87CEEB; color: black;", "aria-current": "page" %>
+      <%= link_to "ログアウト", destroy_user_session_path, class: "logout-button",  "aria-current": "page" %>
     </li>
   </ul>
     </header>
   </div>
-  
-<p>こんにちは、<%= current_user.company_name %>さん</p>
 
+<div class="infomation">
+<p>こんにちは、<%= current_user.company_name %> 様</p>
+</div>
 
 <div class="contents-row">
-  <p>送信済み発注</p>
+  <p>送信一覧</p>
   <% @orders.each do |order| %>
     <div class="order-index">
-      <%= link_to order.delivery_day, order_path(order) %>
+      ◇ <%= link_to order.delivery_day, order_path(order), class: "show-page" %>
       <% if order.sending_user.present? %>
-      <%= link_to order.sending_user.company_name, order_path(order) %>
+      <%= link_to order.sending_user.company_name, order_path(order), class: "show-paage" %>
       <% end %>
     </div>
   <% end %>
@@ -50,8 +90,8 @@
   <% @matched_orders.each do |order| %>
     <% if order.sending_user_id == current_user.id %>
       <div class="order-index">
-        <%= link_to order.delivery_day, order_path(order) %>
-        <%= link_to order.user.company_name, order_path(order) %>
+        ◇ <%= link_to order.delivery_day, order_path(order), class: "show-page" %>
+        <%= link_to order.user.company_name, order_path(order), class: "show-page" %>
       </div>
     <% end %>
   <% end %>
