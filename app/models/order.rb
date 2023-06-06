@@ -6,4 +6,12 @@ class Order < ApplicationRecord
   has_many :comments
   
   validates :delivery_day, presence: true
+  validate :delivery_day_must_be_future
+  validates :sending_user, presence: true
+  
+  private
+
+  def delivery_day_must_be_future
+    errors.add(:delivery_day, 'must be a future date') if delivery_day.present? && delivery_day < Date.tomorrow
+  end
 end

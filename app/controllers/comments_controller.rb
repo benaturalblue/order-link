@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def create
-    binding.pry
     @order = Order.find(params[:order_id])
     @comment = @order.comments.build(comment_params)
     if @comment.save
