@@ -17,6 +17,8 @@
         margin: 50px 0 50px 100px;
         font-size: 20px;
         padding: 10px;
+        border: solid 4px #bad4d1;
+        width: 85vw;
       }
       .show-page {
         text-decoration: none;
@@ -25,14 +27,14 @@
       .create-order {
         text-decoration: none;
         padding: 15px;
-        background-color: #94bcb7;
+        background-color: #bad4d1;
         color: black;
         margin-left: 650px;
       }
       .logout-button {
         text-decoration: none;
         padding: 15px;
-        background-color: #94bcb7;
+        background-color: lightgray;
         color: black;
       }
       .container {
@@ -53,7 +55,6 @@
       
     </style>
 
-    
   <div class="container">
     <header class="d-flex flex-wrap py-3 mb-4 border-bottom">
       <%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"furima-icon"), root_path %>
@@ -78,7 +79,7 @@
     <div class="order-index">
       ◇ <%= link_to order.delivery_day, order_path(order), class: "show-page" %>
       <% if order.sending_user.present? %>
-      <%= link_to order.sending_user.company_name, order_path(order), class: "show-paage" %>
+      <%= link_to order.sending_user.company_name, order_path(order), class: "show-page" %>
       <% end %>
     </div>
   <% end %>

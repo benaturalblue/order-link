@@ -1,108 +1,129 @@
 <style>
-.order-edit {
-  text-decoration: none;
-}
-.order-destroy {
-  text-decoration: none;
-}
-.contents {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0;
-}
-.order-item-index {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-  font-size: 30px;
-}
-.title-index {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-h2 {
-  font-weight: bold;
-}
-.edit-delete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
-}
-.order_item_name {
-  text-align: left;
-  margin-right: 20px;
-  width: 200px;
-  margin-left: 250px;
-}
-.order_item_amount {
-  text-align: left;
-  margin-right: 40px;
-  width: 100px;
-}
-.order_item_memo {
-  text-align: left; 
-  width: 400px;
-}
-.index-delivery {
-  margin-bottom: 60px;
-  font-size: 30px;
-  text-align: center;
-  position: relative;
-}
+  .order-edit {
+    text-decoration: none;
+  }
+  .order-destroy {
+    text-decoration: none;
+  }
+  .contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .order-item-index {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    font-size: 30px;
+  }
+  .title-index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  h2 {
+    font-weight: bold;
+  }
+  .edit-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  .order_item_name {
+    text-align: left;
+    margin-right: 20px;
+    width: 200px;
+    margin-left: 250px;
+  }
+  .order_item_amount {
+    text-align: left;
+    margin-right: 40px;
+    width: 100px;
+  }
+  .order_item_memo {
+    text-align: left; 
+    width: 400px;
+  }
+  .index-delivery {
+    margin-bottom: 60px;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+  }
 
-.delivery-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background-color: #ccc;
-}
+  .delivery-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #ccc;
+  }
 
-.order-edit {
-  text-align: center;
-  background-color: #94bcb7;
-  font-size: 24px;
-  color: black;
-  margin: 10px 0px;
-  padding: 2vh 10vw;
-}
-.order-destroy {
-  text-align: center;
-  background-color: #94bcb7;
-  font-size: 24px;
-  color: black;
-  margin: 20px 10px;
-  padding: 2vh 10vw;
-}
-.logo-image {
-  width: 260px;
-  height: 80px;
-  margin: 30px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.comments {
-  margin: 50px;
-}
-.comment-form {
-  width: 500px;
-  height: 60px;
-  margin: 40px;
-}
-.submit-btn {
-  width: 70px;
-  height: 50px;
-  background-color: #94bcb7;
-  border: none;
-}
+  .order-edit {
+    text-align: center;
+    background-color: #bad4d1;
+    font-size: 30px;
+    color: black;
+    margin: 10px 0px;
+    padding: 1vh 5vw;
+  }
+  .order-destroy {
+    text-align: center;
+    background-color: lightgray;
+    font-size: 30px;
+    color: black;
+    margin: 20px 20px;
+    padding: 1vh 5vw;
+  }
+  .logo-image {
+    width: 260px;
+    height: 80px;
+    margin: 30px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px; 
+  }
+  .comments {
+    margin: 50px;
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+  .comment-form {
+    width: 500px;
+    height: 60px;
+    margin: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+  }
+  .comment-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  .submit-btn {
+    width: 70px;
+    height: 50px;
+    background-color: #bad4d1;
+    border: none;
+    margin-top: 45px;
+  }
+  .comment-index {
+    margin: 30px 0 ;
+    font-size: 25px;
+  }
+  .create-time {
+    margin-left: 5px;
+  }
+  .comment-forms {
+    display: flex;
+  }
 </style>
 
 <%= link_to image_tag("DF2C122C-D754-4D23-916F-539CB5B324BF.jpg", class:"logo-image"), root_path %>
@@ -125,25 +146,28 @@ h2 {
   <% end %>
 </div>
 
+<% if user_signed_in? && @order.user == current_user %>
 <div class="edit-delete">
   <%= link_to '編 集', edit_order_path(@order.id), class: "order-edit" %>
   <%= link_to '削 除', order_path(@order.id), method: :delete, class: "order-destroy" %>
 </div>
+<% end %>
 
 <div class="container">
-  <% if user_signed_in? %>
-    <%= form_with(model: [@order, @comment] , url: order_comments_path(@order), local: true) do |form| %>
-      <%= form.text_area :content, placeholder: "コメントする", rows: "2", class: "comment-form" %>
-      <%= form.submit "送信", class: "submit-btn" %>
-    <% end %>
+  <%= form_with(model: [@order, @comment] , url: order_comments_path(@order), local: true) do |form| %>
+    <div class="comments">
+      <div class= "comment-index">コメント一覧</div>
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= comment.user.company_name %>：</strong>
+          <%= comment.content %>
+          <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </p>
+      <% end %>
+    </div>
+    <div class= "comment-forms">
+    <%= form.text_area :content, placeholder: "コメントする", rows: "2", class: "comment-form" %>
+    <%= form.submit "送信", class: "submit-btn" %>
+    </div>
   <% end %>
-  <div class="comments">
-    <h4>＜コメント一覧＞</h4>
-    <% @comments.each do |comment| %>
-      <p>
-        <strong><%= comment.user.company_name %>：</strong>
-        <%= comment.content %>
-      </p>
-    <% end %>
-  </div>
 </div>
