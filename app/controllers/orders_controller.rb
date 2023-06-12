@@ -56,7 +56,6 @@ class OrdersController < ApplicationController
     @comments = @order.comments.includes(:user)
   end
     
-
   private
   def order_params
     params.require(:order).permit(:delivery_day, :sending_user_id, 

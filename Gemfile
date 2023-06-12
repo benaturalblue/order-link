@@ -66,3 +66,5 @@ gem 'pry-rails'
 
 gem 'cocoon'
 gem "jquery-rails"
+
+gem 'google_drive'
