@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        company_name: 事業者名
+        last_name: 代表者（性）
+        first_name: 代表者（名）
+        kana_last_name: 代表者（カナ）
+        kana_first_name: 代表者（カナ）
+        phone_number: 電話番号
+      order:
+        sending_user: 送信先
+        delivery_day: 納品日
+      order_items:
+        item_name: 品名
+        amount: 数量

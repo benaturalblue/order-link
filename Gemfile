@@ -68,3 +68,5 @@ gem 'cocoon'
 gem "jquery-rails"
 
 gem 'google_drive'
+
+gem 'rails-i18n'

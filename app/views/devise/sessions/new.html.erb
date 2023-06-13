@@ -41,6 +41,10 @@
     <main class="form-signin">
       <%= form_with(model: @user, class: 'registration-main', url: user_session_path, local: true) do |f| %>
         <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+        <div class='login-flash-message'>
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </div>
         <div class="form-floating">
           <%= f.email_field :email, class: 'form-control', id: 'floatingInput', placeholder: 'name@example.com' %>
           <label for="floatingInput">Email address</label>
